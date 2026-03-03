@@ -1,0 +1,179 @@
+{
+  "bio_industries": {
+    "food_industry": {
+      "name": "食品行业",
+      "companies": [
+        "Nestlé", "Unilever", "PepsiCo", "Coca-Cola", "Mondelez International",
+        "General Mills", "Kellogg Company", "Kraft Heinz", "Tyson Foods", "JBS",
+        "Cargill", "ADM (Archer Daniels Midland)", "Bunge", "Mars", "Ferrero",
+        "Danone", "Campbell Soup", "ConAgra Foods", "Hormel Foods", "Smithfield Foods"
+      ],
+      "job_titles": [
+        "Food Scientist", "Quality Assurance Manager", "R&D Manager (Food Innovation)",
+        "Supply Chain Director (Food)", "Food Safety Manager", "Product Development Manager (Food)",
+        "Operations Manager (Food Manufacturing)", "Regulatory Affairs Specialist (Food)",
+        "Brand Manager (Food Products)", "Nutritionist (Product Development)"
+      ]
+    },
+    "biotechnology": {
+      "name": "生物技术",
+      "companies": [
+        "Genentech (Roche)", "Amgen", "Gilead Sciences", "Biogen", "Regeneron",
+        "Moderna", "BioNTech", "Illumina", "Thermo Fisher Scientific", "Danaher",
+        "Agilent Technologies", "Bio-Rad Laboratories", "QIAGEN", "Vertex Pharmaceuticals",
+        "Alexion Pharmaceuticals", "Incyte", "Sarepta Therapeutics", "Bluebird Bio",
+        "CRISPR Therapeutics", "Editas Medicine"
+      ],
+      "job_titles": [
+        "Biotechnology Research Scientist", "Bioinformatics Specialist", "Clinical Research Associate (Biotech)",
+        "Regulatory Affairs Manager (Biotech)", "Process Development Scientist", "Quality Control Analyst (Biotech)",
+        "Business Development Manager (Biotech)", "Medical Science Liaison (Biotech)",
+        "Biostatistician", "Protein Purification Specialist"
+      ]
+    },
+    "synthetic_biology": {
+      "name": "合成生物学",
+      "companies": [
+        "Ginkgo Bioworks", "Synthetic Genomics", "Twist Bioscience", "Zymergen (acquired by Ginkgo)",
+        "Modern Meadow", "Bolt Threads", "Perfect Day", "Clara Foods", "Geltor",
+        "Spiber", "Biofabricate", "Ecovative Design", "Novozymes", "DSM",
+        "Genomatica", "Amyris", "Intrexon (Precigen)", "Calysta", "LanzaTech", "Pivot Bio"
+      ],
+      "job_titles": [
+        "Synthetic Biology Engineer", "Metabolic Engineer", "Strain Development Scientist",
+        "Bioprocess Engineer (Synthetic Biology)", "Computational Biology Scientist",
+        "Fermentation Scientist (Synthetic Biology)", "Protein Design Scientist",
+        "Systems Biology Researcher", "Biosafety Specialist (Synthetic Biology)",
+        "Product Manager (Synthetic Biology)"
+      ]
+    },
+    "dairy_industry": {
+      "name": "乳制品行业",
+      "companies": [
+        "Nestlé (Dairy)", "Danone", "Lactalis", "Fonterra", "FrieslandCampina",
+        "Arla Foods", "Dairy Farmers of America", "Saputo", "Yili Group", "Mengniu Dairy",
+        "Dean Foods", "Schreiber Foods", "Agropur", "Müller", "Parmalat",
+        "Land O'Lakes", "Borden Dairy", "Prairie Farms", "Hiland Dairy", "Kemps"
+      ],
+      "job_titles": [
+        "Dairy Scientist", "Milk Quality Manager", "Dairy Production Manager",
+        "Cheese Production Specialist", "Dairy Product Development Manager",
+        "Dairy Nutritionist", "Cold Chain Logistics Manager (Dairy)",
+        "Dairy Equipment Engineer", "Dairy Safety & Compliance Manager",
+        "Dairy Brand Manager"
+      ]
+    },
+    "infant_formula": {
+      "name": "奶粉行业",
+      "companies": [
+        "Nestlé (Infant Nutrition)", "Danone (Nutricia)", "Abbott (Similac)",
+        "Mead Johnson (Enfamil)", "Friso (FrieslandCampina)", "Aptamil (Danone)",
+        "Cow & Gate (Danone)", "Gerber (Nestlé)", "Bellamy's Organic", "A2 Milk Company",
+        "Yili (Infant Formula)", "Mengniu (Infant Formula)", "Feihe", "Biostime",
+        "Beingmate", "Synutra", "Shijiazhuang Sanlu", "Ausnutria", "Kabrita", "HiPP"
+      ],
+      "job_titles": [
+        "Infant Nutrition Scientist", "Formula Development Manager", "Pediatric Nutritionist",
+        "Quality Assurance Manager (Infant Formula)", "Regulatory Affairs Specialist (Infant Nutrition)",
+        "Clinical Research Manager (Infant Nutrition)", "Supply Chain Manager (Infant Formula)",
+        "Product Safety Manager (Infant Formula)", "Brand Manager (Infant Nutrition)",
+        "Medical Affairs Manager (Infant Nutrition)"
+      ]
+    },
+    "pet_food": {
+      "name": "宠物食品",
+      "companies": [
+        "Mars Petcare", "Nestlé Purina PetCare", "Hill's Pet Nutrition", "Blue Buffalo (General Mills)",
+        "J.M. Smucker (pet food division)", "Diamond Pet Foods", "Wellness Pet Company",
+        "Merrick Pet Care", "Orijen (Champion Petfoods)", "Acana (Champion Petfoods)",
+        "Fromm Family Foods", "Taste of the Wild", "Natural Balance", "Nutro (Mars)",
+        "Royal Canin (Mars)", "Iams (Mars)", "Eukanuba (Mars)", "Pedigree (Mars)",
+        "Whiskas (Mars)", "Fancy Feast (Nestlé)"
+      ],
+      "job_titles": [
+        "Pet Nutritionist", "Pet Food Scientist", "Quality Manager (Pet Food)",
+        "R&D Manager (Pet Nutrition)", "Veterinary Nutritionist", "Pet Food Safety Manager",
+        "Product Manager (Pet Food)", "Supply Chain Manager (Pet Food)",
+        "Regulatory Affairs Specialist (Pet Food)", "Brand Manager (Pet Products)"
+      ]
+    },
+    "livestock_farming": {
+      "name": "畜牧业",
+      "companies": [
+        "Tyson Foods", "JBS", "Cargill", "Smithfield Foods", "Hormel Foods",
+        "Perdue Farms", "Sanderson Farms", "Pilgrim's Pride", "Foster Farms", "Koch Foods",
+        "Mountaire Farms", "Wayne Farms", "Butterball", "Seaboard Corporation",
+        "National Beef Packing", "American Foods Group", "Greater Omaha Packing",
+        "Creekstone Farms", "Niman Ranch", "Certified Angus Beef"
+      ],
+      "job_titles": [
+        "Livestock Production Manager", "Animal Nutritionist", "Veterinarian (Livestock)",
+        "Farm Operations Manager", "Animal Welfare Specialist", "Livestock Geneticist",
+        "Feed Mill Manager", "Livestock Quality Assurance Manager", "Ranch Manager",
+        "Animal Health Specialist"
+      ]
+    },
+    "antibiotics": {
+      "name": "抗生素",
+      "companies": [
+        "Pfizer", "Merck & Co.", "GSK (GlaxoSmithKline)", "Johnson & Johnson (Janssen)",
+        "Novartis", "Roche", "Zoetis (Animal Health)", "Elanco (Animal Health)",
+        "Boehringer Ingelheim (Human/Animal)", "Merck Animal Health", "Teva Pharmaceutical Industries",
+        "Sandoz (Novartis)", "Viatris (Mylan)", "Hikma Pharmaceuticals", "Shionogi",
+        "Paratek Pharmaceuticals", "Melinta Therapeutics", "Cidara Therapeutics",
+        "Entasis Therapeutics", "AbbVie"
+      ],
+      "job_titles": [
+        "Microbiologist (Antimicrobial Resistance)", "Infectious Disease Scientist",
+        "Clinical Development Lead (Anti-infectives)", "Medical Science Liaison (MSL) - ID",
+        "Regulatory Affairs Manager (Antibiotics)", "Pharmacovigilance Specialist",
+        "Head of Animal Health R&D (Bacteriology)", "Process Chemist (API Synthesis)",
+        "QA Manager (Sterile Manufacturing)", "Product Manager (Hospital Antibiotics)"
+      ]
+    },
+    "swine_farming": {
+      "name": "生猪养殖",
+      "companies": [
+        "WH Group (Smithfield Foods)", "JBS USA (Swift)", "Tyson Foods", "Hormel Foods",
+        "Triumph Foods", "Pipestone System", "The Maschhoffs", "Iowa Select Farms",
+        "Carthage System", "AMVC Management Services", "Christensen Farms", "Eichelberger Farms",
+        "Muyuan Foods (China)", "Wens Foodstuff Group (China)", "Charoen Pokphand Foods (CPF)",
+        "BRF (Brazil)", "Danish Crown (Denmark)", "PIC (Genus PLC - Genetics)",
+        "Topigs Norsvin (Genetics)", "Nedap (Equipment)"
+      ],
+      "job_titles": [
+        "Sow Farm Manager", "Wean-to-Finish Supervisor", "Production Veterinarian (Swine)",
+        "Head of Swine Production", "Genetics Nucleus Farm Manager", "Swine Nutritionist",
+        "Animal Welfare Specialist (Swine)", "Logistics Coordinator (Live Hogs)",
+        "Data Analyst (Swine Production)", "Maintenance Manager (Hog Barns)"
+      ]
+    }
+  },
+  "matching_config": {
+    "company_exact_match_weight": 0.95,
+    "company_alias_match_weight": 0.9,
+    "company_partial_match_weight": 0.7,
+    "job_title_exact_match_weight": 0.9,
+    "job_title_partial_match_weight": 0.6,
+    "industry_exact_match_weight": 0.85,
+    "industry_keyword_match_weight": 0.7,
+    "multiple_company_boost": 1.2,
+    "bio_industry_boost": 1.1
+  },
+  "search_keywords": {
+    "bio_related_terms": [
+      "biotechnology", "biotech", "生物技术", "synthetic biology", "合成生物学",
+      "food science", "食品科学", "dairy", "乳制品", "livestock", "畜牧",
+      "pet food", "宠物食品", "antibiotics", "抗生素", "swine", "生猪",
+      "infant formula", "奶粉", "nutrition", "营养"
+    ],
+    "company_aliases": {
+      "Smithfield Foods": ["Smithfield", "WH Group", "史密斯菲尔德"],
+      "Nestlé": ["Nestle", "雀巢"],
+      "Tyson Foods": ["Tyson", "泰森食品"],
+      "JBS": ["JBS USA", "JBS Swift"],
+      "Pfizer": ["辉瑞"],
+      "Merck & Co.": ["Merck", "默克"]
+    }
+  }
+}

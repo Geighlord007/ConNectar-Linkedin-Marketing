@@ -1,0 +1,34 @@
+{
+  "connection_request": {
+    "default": "您好 {name}，我对您在 {company} 的工作经验很感兴趣，希望能够建立联系，互相学习交流。期待您的回复！",
+    "product_manager": "您好 {name}，我注意到您在 {company} 担任产品经理，我们在产品创新方面有一些想法想与您交流，希望能够建立联系。",
+    "engineer": "您好 {name}，作为 {company} 的技术专家，我对您的技术背景很感兴趣，希望能够建立联系，探讨技术发展趋势。",
+    "marketing": "您好 {name}，我看到您在 {company} 的营销工作很出色，希望能够建立联系，交流营销策略和经验。"
+  },
+  "email": {
+    "subject_templates": {
+      "default": "关于 {company} 的合作机会",
+      "partnership": "探讨与 {company} 的潜在合作",
+      "networking": "希望与您建立专业联系",
+      "recruitment": "优秀的职业机会分享"
+    },
+    "body_templates": {
+      "default": "尊敬的 {name}，\n\n我是 {sender_name}，来自 {sender_company}。我注意到您在 {company} 担任 {title}，对您的专业背景很感兴趣。\n\n{custom_message}\n\n如果您有兴趣了解更多，欢迎回复此邮件或通过LinkedIn与我联系。\n\n期待您的回复！\n\n最好的祝愿，\n{sender_name}\n{sender_title}\n{sender_company}\n{sender_contact}",
+      "partnership": "尊敬的 {name}，\n\n我是 {sender_name}，来自 {sender_company}。我们正在寻找优秀的合作伙伴，您在 {company} 的 {title} 经验让我们印象深刻。\n\n{custom_message}\n\n我们相信这将是一个互利共赢的合作机会。如果您有兴趣，我很乐意安排一次详细的讨论。\n\n期待您的回复！\n\n最好的祝愿，\n{sender_name}",
+      "recruitment": "尊敬的 {name}，\n\n我是 {sender_name}，专业的人才顾问。我注意到您在 {company} 的出色表现，想与您分享一个优秀的职业机会。\n\n{custom_message}\n\n如果您对新的职业挑战感兴趣，我很乐意与您详细讨论。所有信息将严格保密。\n\n期待您的回复！\n\n最好的祝愿，\n{sender_name}"
+    }
+  },
+  "variables": {
+    "sender_name": "[请在此填写您的姓名]",
+    "sender_title": "[请在此填写您的职位]",
+    "sender_company": "[请在此填写您的公司]",
+    "sender_contact": "[请在此填写您的联系方式]",
+    "custom_message": "[请在此填写自定义消息内容]"
+  },
+  "personalization_rules": {
+    "use_company_in_subject": true,
+    "use_title_in_greeting": true,
+    "max_message_length": 500,
+    "include_sender_signature": true
+  }
+}

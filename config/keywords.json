@@ -1,0 +1,25 @@
+{
+  "keywords": [
+    "product manager",
+    "software engineer",
+    "marketing director",
+    "sales manager",
+    "data scientist",
+    "business analyst",
+    "project manager",
+    "ui ux designer"
+  ],
+  "search_settings": {
+    "max_results_per_keyword": 100,
+    "delay_between_searches": 5,
+    "enable_people_filter": true,
+    "scroll_pause_time": 2,
+    "max_scroll_attempts": 10
+  },
+  "data_extraction": {
+    "required_fields": ["name", "title", "linkedin_url"],
+    "optional_fields": ["company", "description", "location", "connections_count", "profile_image_url"],
+    "validate_urls": true,
+    "skip_incomplete_profiles": false
+  }
+}

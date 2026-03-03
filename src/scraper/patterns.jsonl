@@ -1,0 +1,10 @@
+{"label": "JOB_TITLE", "pattern": [{"POS": {"IN": ["NOUN", "PROPN"]}}, {"LOWER": "of"}, {"POS": {"IN": ["NOUN", "PROPN"]}}]}
+{"label": "JOB_TITLE", "pattern": [{"POS": {"IN": ["ADJ", "NOUN", "PROPN"]}, "OP": "+"}, {"LOWER": {"IN": ["ceo", "cto", "cfo", "coo", "officer", "president", "director", "manager", "engineer", "developer", "specialist", "analyst", "consultant", "founder", "owner", "partner", "head", "lead", "supervisor", "captain", "marshal", "chief"]}}]}
+{"label": "JOB_TITLE", "pattern": [{"LOWER": {"IN": ["ceo", "cto", "cfo", "coo", "founder", "owner", "president", "captain", "marshal", "chief"]}}]}
+{"label": "JOB_TITLE", "pattern": [{"LOWER": "vice"}, {"LOWER": "president"}, {"LOWER": "of"}, {"POS": {"IN": ["NOUN", "PROPN"]}, "OP": "+"}]}
+{"label": "JOB_TITLE", "pattern": [{"LOWER": "senior"}, {"POS": {"IN": ["NOUN", "PROPN"]}, "OP": "+"}]}
+{"label": "COMPANY", "pattern": [{"IS_TITLE": true, "OP": "+"}, {"LOWER": {"IN": ["inc", "llc", "corp", "company", "corporation", "ltd", "limited", "group", "associates", "partners", "solutions", "services", "systems", "technologies", "consulting", "management", "foods", "department"]}}]}
+{"label": "COMPANY", "pattern": [{"LOWER": {"IN": ["town", "city", "university", "college", "school"]}}, {"LOWER": "of"}, {"IS_TITLE": true, "OP": "+"}]}
+{"label": "COMPANY", "pattern": [{"IS_TITLE": true}, {"LOWER": {"IN": ["fire", "police", "health", "medical"]}}, {"LOWER": {"IN": ["department", "system", "center", "service"]}}]}
+{"label": "LOCATION", "pattern": [{"LOWER": "greater"}, {"IS_TITLE": true, "OP": "+"}, {"LOWER": "area"}]}
+{"label": "LOCATION", "pattern": [{"IS_TITLE": true}, {"LOWER": "metro"}, {"LOWER": "area"}]}

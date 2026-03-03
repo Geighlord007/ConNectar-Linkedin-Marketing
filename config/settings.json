@@ -1,0 +1,96 @@
+{
+  "database": {
+    "type": "sqlite",
+    "path": "database/contacts.db",
+    "backup_enabled": true,
+    "backup_interval_hours": 24
+  },
+  "browser": {
+    "chrome_debug_port": 9222,
+    "user_data_dir": "chrome_user_data",
+    "headless": false,
+    "window_size": [1920, 1080],
+    "page_load_timeout": 30
+  },
+  "scraping": {
+    "request_delay_min": 2,
+    "request_delay_max": 5,
+    "retry_attempts": 3,
+    "retry_delay": 10,
+    "user_agents": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    ]
+  },
+  "safety_limits": {
+    "max_daily_friend_requests": 50,
+    "max_daily_emails": 100,
+    "friend_request_delay_min": 30,
+    "friend_request_delay_max": 60,
+    "email_delay_min": 10,
+    "email_delay_max": 30
+  },
+  "email": {
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "use_tls": true,
+    "username": "",
+    "password": "",
+    "from_name": "",
+    "templates_path": "config/email_templates.json"
+  },
+  "filtering": {
+    "min_match_score": 0.3,
+    "preview_count": 5,
+    "llm_batch_size": 100,
+    "llm_simple_progress_step": 20,
+    "llm_show_progress": true,
+    "llm_progress_step": 20,
+    "llm_score_timeout_seconds": 8,
+    "llm_score_retry_attempts": 1,
+    "llm_score_max_tokens": 500,
+    "llm_score_bulk_max_tokens": 30000,
+    "llm_score_temperature": 0.2,
+    "llm_score_thinking_type": "disabled",
+    "llm_enhance_timeout_seconds": 8,
+    "llm_enhance_retry_attempts": 1,
+    "llm_enhance_max_tokens": 450,
+    "llm_enhance_temperature": 0.2,
+    "llm_enhance_thinking_type": "enabled",
+    "max_results": 50,
+    "enable_ai_filtering": true,
+    "weight_title": 0.4,
+    "weight_company": 0.25,
+    "weight_skills": 0.2,
+    "weight_location": 0.15
+  },
+  "logging": {
+    "level": "WARNING",
+    "file_path": "logs/system.log",
+    "max_file_size_mb": 10,
+    "backup_count": 5,
+    "console_output": false,
+    "console_level": "ERROR"
+  },
+  "llm": {
+    "enabled": true,
+    "model_name": "${ZHIPU_MODEL}",
+    "api_type": "openai_compatible",
+    "api_base": "${ZHIPU_API_BASE}",
+    "api_path": "chat/completions",
+    "api_key": "${ZHIPU_API_KEY}",
+    "max_tokens": 20000,
+    "temperature": 1.0,
+    "thinking_type": "disabled",
+    "timeout": 20,
+    "retry_attempts": 2
+  },
+  "llm_enrichment": {
+    "enabled": true,
+    "model_name": "${ZHIPU_MODEL}",
+    "api_base": "${ZHIPU_API_BASE}",
+    "api_key": "${ZHIPU_API_KEY}",
+    "batch_size": 20,
+    "temperature": 0.1,
+    "timeout": 60
+  }
+}
