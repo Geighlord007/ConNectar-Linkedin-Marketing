@@ -149,12 +149,13 @@ class LLMClient:
         except Exception:
             temperature = 0.3
 
-        if content_length >= 25000:
-            max_tokens = min(max_tokens, 3000)
-        elif content_length >= 12000:
-            max_tokens = min(max_tokens, 5000)
-        else:
-            max_tokens = min(max_tokens, 8000)
+        # 不限制 max_tokens，根据实际需要分配
+        # if content_length >= 25000:
+        #     max_tokens = min(max_tokens, 3000)
+        # elif content_length >= 12000:
+        #     max_tokens = min(max_tokens, 5000)
+        # else:
+        #     max_tokens = min(max_tokens, 8000)
 
         payload = {
             "model": model_name,

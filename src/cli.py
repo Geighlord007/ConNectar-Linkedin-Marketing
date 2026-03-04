@@ -163,97 +163,15 @@ class LinkedInMarketingCLI:
         requirements_input: str,
         min_score: float
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
-        from src.utils.llm_client import LLMClient
-        llm_client = LLMClient()
-        if not llm_client.is_enabled():
-            raise RuntimeError("LLM未启用，请先配置后再使用llm_simple模式")
-
-        rules = self._load_scoring_rules()
-        filtering_cfg = rules.get('filtering', {}) if isinstance(rules, dict) else {}
-        llm_batch_size = int(filtering_cfg.get('llm_batch_size', 100))
-        progress_step = int(filtering_cfg.get('llm_simple_progress_step', 20))
-        llm_fail_fast = bool(filtering_cfg.get('llm_simple_fail_fast', True))
-        contacts_to_score, prefilter_meta = self._prepare_llm_candidates(
-            contacts_data=contacts_data,
-            requirements_input=requirements_input
+        """LLM简化模式（已废弃，回退到Embedding模式）"""
+        print("⚠️ llm_simple模式已废弃，自动切换到embedding模式")
+        from src.filter.contact_filter import ContactFilter
+        filter_engine = ContactFilter()
+        return filter_engine.filter_contacts(
+            contacts=contacts_data,
+            requirements_input=requirements_input,
+            min_score=min_score
         )
-
-        print(f"🤖 LLM简化评分中，待评估 {len(contacts_to_score)} 个联系人（总量 {len(contacts_data)}）...")
-        print(f"⚙️ 当前生效配置: llm_batch_size={llm_batch_size}, fail_fast={llm_fail_fast}")
-        if prefilter_meta.get('prefiltered'):
-            print(f"⚡ 已启用快速预排序：候选池 {prefilter_meta.get('prefilter_pool_size')}，LLM预算 {prefilter_meta.get('llm_budget')}")
-        matched_contacts: List[Dict[str, Any]] = []
-        progress_step = max(1, progress_step)
-        llm_batch_size = max(1, llm_batch_size)
-
-        def _build_contact_info(contact: Dict[str, Any]) -> Dict[str, Any]:
-            return {
-                'name': contact.get('name', ''),
-                'title': contact.get('title', ''),
-                'company': contact.get('company', ''),
-                'location': contact.get('location', ''),
-            }
-
-        def _enrich_contact(contact: Dict[str, Any], result: Dict[str, Any]) -> Dict[str, Any]:
-            try:
-                score = float(result.get('match_score', 0.0) or 0.0)
-            except Exception:
-                score = 0.0
-            enriched_contact = dict(contact)
-            enriched_contact['match_score'] = score
-            enriched_contact['match_reasons'] = result.get('match_reasons', [])
-            enriched_contact['llm_tags'] = result.get('tags', [])
-            enriched_contact['industry_category'] = result.get('industry_category', 'unknown')
-            enriched_contact['seniority_level'] = result.get('seniority_level', 'unknown')
-            enriched_contact['scoring_mode'] = 'llm_simple'
-            return enriched_contact
-
-        total_to_score = len(contacts_to_score)
-        completed = 0
-        total_batches = (total_to_score + llm_batch_size - 1) // llm_batch_size if total_to_score else 0
-        if total_batches:
-            print(f"  批量模式：共 {total_batches} 批，每批固定 {llm_batch_size} 人（最后一批可能不足）")
-        for start in range(0, total_to_score, llm_batch_size):
-            batch_idx = (start // llm_batch_size) + 1
-            batch_contacts = contacts_to_score[start:start + llm_batch_size]
-            batch_info = [_build_contact_info(c) for c in batch_contacts]
-            batch_start_ts = time.perf_counter()
-            print(f"  开始第 {batch_idx}/{total_batches} 批（{len(batch_contacts)} 人）")
-            try:
-                batch_results = llm_client.classify_contacts_tags_batch(batch_info, requirements_input) or []
-            except Exception as batch_error:
-                if llm_fail_fast:
-                    raise RuntimeError(f"[LLM_BATCH_FAILED] 第 {batch_idx} 批失败并中止: {batch_error}") from batch_error
-                batch_results = []
-            if len(batch_results) != len(batch_contacts):
-                batch_results = (batch_results + [{} for _ in range(len(batch_contacts))])[:len(batch_contacts)]
-            for contact, result in zip(batch_contacts, batch_results):
-                enriched_contact = _enrich_contact(contact, result if isinstance(result, dict) else {})
-                if enriched_contact.get('match_score', 0.0) >= min_score:
-                    matched_contacts.append(enriched_contact)
-                completed += 1
-                if completed % progress_step == 0 or completed == total_to_score:
-                    print(f"  已评估 {completed}/{total_to_score}")
-            batch_elapsed = time.perf_counter() - batch_start_ts
-            print(f"  完成第 {batch_idx}/{total_batches} 批，用时 {batch_elapsed:.1f}s")
-
-        matched_contacts.sort(key=lambda x: x.get('match_score', 0.0), reverse=True)
-        evaluated_total = len(contacts_to_score)
-        match_rate = (len(matched_contacts) / evaluated_total) if evaluated_total else 0.0
-        stats = {
-            'scoring_mode': 'llm_simple',
-            'total_contacts': len(contacts_data),
-            'evaluated_contacts': evaluated_total,
-            'filtered_contacts': len(matched_contacts),
-            'match_rate': match_rate,
-            'min_score': min_score,
-            'truncated': False,
-            'prefiltered': prefilter_meta.get('prefiltered', False),
-            'prefilter_pool_size': prefilter_meta.get('prefilter_pool_size', evaluated_total),
-            'llm_budget': prefilter_meta.get('llm_budget', evaluated_total),
-            'llm_batch_size': llm_batch_size
-        }
-        return matched_contacts, stats
 
     def _print_pipeline_guide(self) -> None:
         print("\n🧭 推荐流程（产品视角）")
@@ -658,40 +576,29 @@ class LinkedInMarketingCLI:
                         min_score = float(min_score_input)
                     except Exception:
                         min_score = default_min_score
-                score_mode = 'llm_resume_style'
+                score_mode = 'embedding'
                 print(f"🚀 开始智能筛选，模式: {score_mode}")
                 from src.filter.contact_filter import ContactFilter
                 filter_engine = ContactFilter()
-                if isinstance(updated_config, dict):
-                    filter_engine.scoring_engine.config = updated_config
-                filtering_cfg = filter_engine.scoring_engine.config.get('filtering', {}) if isinstance(filter_engine.scoring_engine.config, dict) else {}
+
+                # 显示配置信息
                 try:
-                    llm_batch_size = max(1, int(filtering_cfg.get('llm_batch_size', 100)))
+                    cfg = ConfigLoader()
+                    settings = cfg.load_settings() if hasattr(cfg, 'load_settings') else {}
+                    filtering_cfg = settings.get('filtering', {}) if isinstance(settings, dict) else {}
+                    embedding_cfg = settings.get('embedding_model', {}) if isinstance(settings, dict) else {}
+                    batch_size = embedding_cfg.get('batch_size', 50)
+                    timeout = embedding_cfg.get('timeout', 30)
                 except Exception:
-                    llm_batch_size = 100
-                print(f"⚙️ 当前生效配置: llm_batch_size={llm_batch_size}")
-                try:
-                    llm_score_timeout = float(filtering_cfg.get('llm_score_timeout_seconds', 12))
-                except Exception:
-                    llm_score_timeout = 12.0
-                try:
-                    llm_score_retries = max(1, int(filtering_cfg.get('llm_score_retry_attempts', 1)))
-                except Exception:
-                    llm_score_retries = 1
-                scoped_contacts = len(contacts_data)
-                batch_count = (max(0, scoped_contacts - 1) // llm_batch_size + 1) if scoped_contacts else 0
-                llm_call_count = batch_count
-                estimated_upper_seconds = int(llm_call_count * llm_score_timeout * llm_score_retries)
-                print(
-                    f"⏱️ 预计处理人数: {scoped_contacts} 人, 批次={batch_count}, 每批={llm_batch_size}, 预计LLM请求={llm_call_count}, "
-                    f"理论最长约 {estimated_upper_seconds}s",
-                    flush=True
-                )
+                    batch_size = 50
+                    timeout = 30
+
+                print(f"⚙️ 当前生效配置: batch_size={batch_size}, timeout={timeout}s")
+                print(f"⏱️ 预计处理人数: {len(contacts_data)} 人")
                 filtered_contacts, stats = filter_engine.filter_contacts(
                     contacts=contacts_data,
                     requirements_input=requirements_input,
-                    min_score=min_score,
-                    require_llm=True
+                    min_score=min_score
                 )
                 
             except Exception as config_error:
@@ -699,13 +606,10 @@ class LinkedInMarketingCLI:
                 return []
             
             if filtered_contacts:
-                print(f"✅ V3筛选完成，找到 {len(filtered_contacts)} 个匹配联系人")
+                print(f"✅ 筛选完成，找到 {len(filtered_contacts)} 个匹配联系人")
                 print(f"📊 匹配率: {stats.get('match_rate', 0)*100:.1f}%")
-                if stats.get('truncated'):
-                    print(
-                        f"⚠️ 本次仅评分 {stats.get('scored_contacts', 0)}/{stats.get('input_contacts', 0)} 条，"
-                        f"批大小为 llm_batch_size={stats.get('llm_batch_size', 0)}"
-                    )
+                print(f"⏱️ 处理时间: {stats.get('processing_time', 0):.2f}秒")
+                print(f"📊 处理速度: {stats.get('contacts_per_second', 0):.1f} 人/秒")
                 
                 # 显示前5个结果
                 print("\n🎯 V3筛选结果预览:")
